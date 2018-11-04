@@ -39,6 +39,6 @@ setup(
     ],
     keywords='django dynamic live settings setty django-setty admin cache',
 
-    install_requires=['Django', 'django-picklefield', 'python-memcached'],
+    install_requires=['Django>=1.11', 'django-picklefield', 'python-memcached'],
     test_suite='setty.tests',
 )
