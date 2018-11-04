@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='django-setty',
 
-    version='1.0.0',
+    version='1.0.1',
 
     author='Michael England',
     author_email='michael.k.england@gmail.com',
