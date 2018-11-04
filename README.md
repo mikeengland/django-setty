@@ -4,6 +4,10 @@ django-setty
 Django-Setty allows you to dynamically change settings inside the Django Admin Console.
 The app provides both a database and a cache backend for storing and retrieving your settings.
 
+
+
+[![Coverage Status](https://coveralls.io/repos/github/mikeengland/django-setty/badge.svg?branch=master)](https://coveralls.io/github/mikeengland/django-setty?branch=master)
+
 Requirements
 ------------
 * Python 3.4+
