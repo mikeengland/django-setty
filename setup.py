@@ -1,9 +1,16 @@
+# read the contents of your README file
+from os import path
+
 from setuptools import setup
+
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name='django-setty',
 
-    version='1.0.1',
+    version='1.0.2',
 
     author='Michael England',
     author_email='michael.k.england@gmail.com',
@@ -16,11 +23,8 @@ setup(
     url='https://github.com/mikeengland/django-setty',
 
     description='Django app allowing users to configure settings dynamically in the Admin screen',
-    long_description='Django Setty is a Django app which allows users to configure settings dynamically '
-                     'in the Django Admin console. A number of data types are supported - dicts, lists, '
-                     'integers, floats, strings and booleans. Two backends are bundled - one is a database backend '
-                     'which uses the database to retrieve the settings, and the other uses Memcached to cache the '
-                     'settings defined in the database.',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
 
     classifiers=[
         'License :: OSI Approved :: Apache Software License',
