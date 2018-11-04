@@ -1,10 +1,12 @@
-from django.forms import fields
-from django.test import TestCase
+from unittest.mock import patch
 
+from django.forms import fields
+from django.test import TestCase, override_settings
 from setty.admin import SettingsForm
 from setty.models import SettySettings
 
 
+@override_settings(SETTY_BACKEND='DatabaseBackend')
 class AdminSettingsFormTests(TestCase):
 
     def _validate_invalid_form(self, data_type):
@@ -75,3 +77,16 @@ class AdminSettingsFormTests(TestCase):
         self._save_form('list', '[1, 2, 3, 4]')
 
         self.assertEquals(SettySettings.objects.get(name='mysetting').value, [1, 2, 3, 4])
+
+    @patch('setty.backend.cache')
+    def test_save_calls_cache_set_with_correct_args_if_cachebackend_not_used(self, mock_cache):
+        self._save_form('list', '[1, 2, 3, 4]')
+
+        mock_cache.assert_not_called()
+
+    @override_settings(SETTY_BACKEND='CacheBackend')
+    @patch('setty.backend.cache')
+    def test_save_calls_cache_set_with_correct_args_if_cachebackend_used(self, mock_cache):
+        self._save_form('list', '[1, 2, 3, 4]')
+
+        mock_cache.set.assert_called_once_with('_dyn_settings_:mysetting', [1, 2, 3, 4], 3600)

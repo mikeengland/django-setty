@@ -2,6 +2,7 @@ import json
 from distutils.util import strtobool
 
 from django import forms
+from django.conf import settings
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -36,6 +37,12 @@ class SettingsForm(forms.ModelForm):
         instance = super().save(commit=False)
         instance.value = self.cleaned_data['value_unpacked']
         instance.save()
+
+        # Reset item in cache if changed in the admin
+        if settings.SETTY_BACKEND == 'CacheBackend':
+            from setty.backend import CacheBackend
+            CacheBackend().set_in_cache(instance.name, instance.value)
+
         return instance
 
     class Meta:

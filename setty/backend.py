@@ -1,9 +1,9 @@
+import logging
+
 from django.conf import settings
 from django.core.cache import cache
 
 from .models import SettySettings
-
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -43,15 +43,15 @@ class CacheBackend(DatabaseBackend):
 
     def set(self, name, value):
         super().set(name, value)
-        self._set_in_cache(name, value)
+        self.set_in_cache(name, value)
         return value
 
-    def _set_in_cache(self, name, value):
+    def set_in_cache(self, name, value):
         cache.set(self._make_cache_key(name), value, getattr(settings, 'SETTY_CACHE_TTL', 3600))
 
     def load_all_settings_into_cache(self):
         for setting in self.get_all():
-            self._set_in_cache(setting.name, setting.value)
+            self.set_in_cache(setting.name, setting.value)
 
     @staticmethod
     def _make_cache_key(name):
