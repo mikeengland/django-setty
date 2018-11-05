@@ -9,7 +9,7 @@ The app provides both a database and a cache backend for storing and retrieving 
 
 Requirements
 ------------
-* Python 3.5+
+* Python 3.4+
 * Django 1.11+
 
 Continuous integration currently tests Django v1.11, v2.0, v2.1 and master.
