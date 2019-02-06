@@ -70,6 +70,8 @@ from setty import config
 assert config.my_integer == 10
 
 ```
+If the setting does not exist in the database, the value defined in the setting `SETTY_NOT_FOUND_VALUE` will be used.
+If this is not set, `None` will be returned.
 
 Setty can be used inside Django templates by adding 'setty.context_processors.setty_settings' to the
 `TEMPLATE_CONTEXT_PROCESSORS` setting and accessing it via the `setty` key.

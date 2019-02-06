@@ -2,7 +2,6 @@ from unittest.mock import patch, call
 
 from django.test import TestCase
 from django.test import override_settings
-
 from setty.backend import DatabaseBackend, CacheBackend
 from setty.models import SettySettings
 
@@ -31,6 +30,13 @@ class DatabaseBackendTests(BaseBackendTestsMixin, TestCase):
     def test_get_all_returns_all_settings(self):
         settings = self.backend.get_all()
         self.assertEqual(list(settings), list(self.all_settings))
+
+    def test_missing_item_returns_none_if_not_found_setting_undefined(self):
+        self.assertIsNone(self.backend.get('missing'))
+
+    @override_settings(SETTY_NOT_FOUND_VALUE='__notfound__')
+    def test_missing_item_returns_not_found_setting_value_if_not_found_setting_defined(self):
+        self.assertEqual(self.backend.get('missing'), '__notfound__')
 
     def test_get_returns_bool(self):
         self.assertEqual(self.backend.get('mybool'), True)

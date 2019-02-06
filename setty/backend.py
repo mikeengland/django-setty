@@ -15,8 +15,12 @@ class DatabaseBackend:
         return SettySettings.objects.all()
 
     def get(self, name):
-        setting = SettySettings.objects.get(name=name)
-        return setting.value
+        try:
+            setting = SettySettings.objects.get(name=name).value
+        except SettySettings.DoesNotExist:
+            setting = getattr(settings, 'SETTY_NOT_FOUND_VALUE', None)
+
+        return setting
 
     def set(self, name, value):
         SettySettings.objects.filter(name=name).update(value=value)

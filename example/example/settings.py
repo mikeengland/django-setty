@@ -137,3 +137,4 @@ STATIC_URL = '/static/'
 
 #SETTY_BACKEND = 'DatabaseBackend'
 SETTY_BACKEND = 'CacheBackend'
+SETTY_NOT_FOUND_VALUE = '__notfound__'
