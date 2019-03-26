@@ -10,7 +10,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
     name='django-setty',
 
-    version='2.0.2',
+    version='2.0.3',
 
     author='Michael England',
     author_email='michael.k.england@gmail.com',
