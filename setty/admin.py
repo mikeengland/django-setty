@@ -20,6 +20,13 @@ SERIALIZERS = {
 
 
 class SettingsForm(forms.ModelForm):
+
+    def __init__(self, *args, instance=None, **kwargs):
+        # Loading the stringified value does not work without manually passing this in as initial data.
+        # This is due to it being a model property.
+        initial_data = {'value_unpacked': instance.value_unpacked}
+        super().__init__(*args, initial=initial_data, instance=instance, **kwargs)
+
     value_unpacked = forms.CharField(label='Value',
                                      help_text='The value to store. '
                                                'List and Dict data types should be defined as JSON strings.')
