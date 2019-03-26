@@ -23,8 +23,9 @@ class SettingsForm(forms.ModelForm):
 
     def __init__(self, *args, instance=None, **kwargs):
         # Loading the stringified value does not work without manually passing this in as initial data.
-        # This is due to it being a model property.
-        initial_data = {'value_unpacked': instance.value_unpacked}
+        # This is due to it being a model property. We can safely ignore the provided inital kwarg as it is merged later
+        kwargs.pop('initial', None)
+        initial_data = {'value_unpacked': getattr(instance, 'value_unpacked', None)}
         super().__init__(*args, initial=initial_data, instance=instance, **kwargs)
 
     value_unpacked = forms.CharField(label='Value',
