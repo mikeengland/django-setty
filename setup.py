@@ -17,7 +17,7 @@ setup(
 
     license='Apache License Version 2.0',
 
-    packages=['setty'],
+    packages=['setty', 'setty.migrations'],
     include_package_data=True,
 
     url='https://github.com/mikeengland/django-setty',
