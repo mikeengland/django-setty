@@ -21,7 +21,7 @@ class TypeChoices:
 
 
 class SettySettings(models.Model):
-    name = models.CharField(max_length=255, primary_key=True)
+    name = models.CharField(max_length=190, primary_key=True)
     value = PickledObjectField()
     type = models.CharField(max_length=8, choices=TypeChoices.ALL_CHOICES)
     created_time = models.DateTimeField(auto_now_add=True)
