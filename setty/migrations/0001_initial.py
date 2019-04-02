@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SettySettings',
             fields=[
-                ('name', models.CharField(max_length=255, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=190, primary_key=True, serialize=False)),
                 ('value', picklefield.fields.PickledObjectField(editable=False)),
                 ('type', models.CharField(choices=[('bool', 'Bool'), ('dict', 'Dict'), ('float', 'Float'), ('integer', 'Integer'), ('list', 'List'), ('string', 'String')], max_length=8)),
                 ('created_time', models.DateTimeField(auto_now_add=True)),
