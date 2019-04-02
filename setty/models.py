@@ -21,6 +21,7 @@ class TypeChoices:
 
 
 class SettySettings(models.Model):
+    # 190 chars or there is a key length error in mysql 5.6
     name = models.CharField(max_length=190, primary_key=True)
     value = PickledObjectField()
     type = models.CharField(max_length=8, choices=TypeChoices.ALL_CHOICES)
