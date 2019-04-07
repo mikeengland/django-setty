@@ -76,6 +76,15 @@ If this is not set, `None` will be returned.
 Setty can be used inside Django templates by adding 'setty.context_processors.setty_settings' to the
 `TEMPLATE_CONTEXT_PROCESSORS` setting and accessing it via the `setty` key.
 
+The value of a setting can also be updated by using the syntax:
+```python
+from setty import config
+
+config.my_integer = 100
+
+```
+Note: Only settings that already exist in the database can be updated. New settings cannot be added this way.
+
 Loading all settings into the Cache
 ------------------------------------
 If you use the `CacheBackend` backend, you can easily load all settings into the Cache. This is useful if you want to
