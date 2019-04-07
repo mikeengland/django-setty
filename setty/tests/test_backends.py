@@ -3,6 +3,7 @@ from unittest.mock import patch, call
 from django.test import TestCase
 from django.test import override_settings
 from setty.backend import DatabaseBackend, CacheBackend
+from setty.exceptions import SettingDoesNotExistError
 from setty.models import SettySettings
 
 
@@ -55,6 +56,11 @@ class DatabaseBackendTests(BaseBackendTestsMixin, TestCase):
 
     def test_get_returns_dict(self):
         self.assertEqual(self.backend.get('mydict'), {'a': 1, 'b': 2})
+
+    def test_set_invalid_setting_raises_exception(self):
+        with self.assertRaisesMessage(SettingDoesNotExistError, f'Error setting value for invalid - '
+                                                                f'this setting does not exist in the database!'):
+            self.backend.set('invalid', True)
 
     def test_set_updates_bool(self):
         self.backend.set('mybool', False)

@@ -2,10 +2,12 @@ import logging
 
 from django.conf import settings
 from django.core.cache import cache
+from setty.exceptions import SettingDoesNotExistError
 
 from .models import SettySettings
 
 logger = logging.getLogger(__name__)
+
 
 class DatabaseBackend:
     """
@@ -23,7 +25,10 @@ class DatabaseBackend:
         return setting
 
     def set(self, name, value):
-        SettySettings.objects.filter(name=name).update(value=value)
+        updated_count = SettySettings.objects.filter(name=name).update(value=value)
+        if not updated_count:
+            raise SettingDoesNotExistError(f'Error setting value for {name} - '
+                                           f'this setting does not exist in the database!')
         return value
 
 
