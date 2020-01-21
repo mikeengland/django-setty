@@ -34,8 +34,9 @@ class SettingsForm(forms.ModelForm):
 
     def clean_value_unpacked(self):
         serializer = SERIALIZERS[self.cleaned_data['type']]
+        print(self.cleaned_data['value_unpacked'])
         try:
-            serialized_value = serializer(self.cleaned_data['value_unpacked'])
+            serialized_value = serializer(self.cleaned_data['value_unpacked'].replace("\'", "\""))
         except Exception as e:
             raise ValidationError('An error occurred storing the value: {}'.format(e))
 
@@ -55,7 +56,7 @@ class SettingsForm(forms.ModelForm):
 
     class Meta:
         model = SettySettings
-        fields = ['name', 'type', 'value_unpacked']
+        fields = ['name', 'app_name', 'type', 'value_unpacked']
         read_only_fields = ['created_time', 'updated_time']
 
         help_texts = {
@@ -67,5 +68,5 @@ class SettingsForm(forms.ModelForm):
 @admin.register(SettySettings)
 class SettyAdmin(admin.ModelAdmin):
     form = SettingsForm
-    list_display = ['name', 'type', 'value_unpacked', 'created_time', 'updated_time']
+    list_display = ['name', 'app_name', 'type', 'value_unpacked', 'created_time', 'updated_time']
     readonly_fields = ['created_time', 'updated_time']
