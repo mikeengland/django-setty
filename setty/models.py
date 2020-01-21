@@ -26,7 +26,7 @@ APP_CHOICES = [ (app,app) for app in settings.INSTALLED_APPS ]
 class SettySettings(models.Model):
     # 190 chars or there is a key length error in mysql 5.6
     name = models.CharField(max_length=190, primary_key=True)
-    app_name = models.CharField(max_length=190, choices=APP_CHOICES)
+    app_name = models.CharField(max_length=190, choices=APP_CHOICES, blank=True)
     value = PickledObjectField()
     type = models.CharField(max_length=8, choices=TypeChoices.ALL_CHOICES)
     created_time = models.DateTimeField(auto_now_add=True)
