@@ -34,7 +34,6 @@ class SettingsForm(forms.ModelForm):
 
     def clean_value_unpacked(self):
         serializer = SERIALIZERS[self.cleaned_data['type']]
-        print(self.cleaned_data['value_unpacked'])
         try:
             serialized_value = serializer(self.cleaned_data['value_unpacked'].replace("\'", "\""))
         except Exception as e:
