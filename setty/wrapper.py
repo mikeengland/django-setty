@@ -27,3 +27,6 @@ class Settings:
 
     def __dir__(self):
         return [setting.name for setting in self._backend.get_all()]
+
+    def get_for_app(self, app_name):
+        return {setting.name: setting.value for setting in self._backend.get_all(app_name)}

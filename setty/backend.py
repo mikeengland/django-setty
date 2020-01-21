@@ -13,7 +13,9 @@ class DatabaseBackend:
     """
     The simple DatabaseBackend is backed by the Django model storing these settings
     """
-    def get_all(self):
+    def get_all(self, app_name=None):
+        if app_name:
+            return SettySettings.objects.filter(app_name=app_name).all()
         return SettySettings.objects.all()
 
     def get(self, name):
