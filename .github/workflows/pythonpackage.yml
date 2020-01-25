@@ -23,9 +23,10 @@ jobs:
         pip install tox tox-gh-actions coveralls
         pip install django
         python setup.py install
+    - name: debug
+      run: ls -l
     - name: Run test suite
-      run: |
-        tox
+      run: tox
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v1.0.1
     - name: Lint with flake8
