@@ -26,8 +26,8 @@ jobs:
     - name: debug
       run: ls -l
     - name: Run test suite
-#      run: tox -e py
-      run: python manage.py test
+      run: tox -e py
+#      run: python manage.py test
 #    - name: Coveralls GitHub Action
 #      uses: coverallsapp/github-action@v1.0.1
     - name: Lint with flake8
