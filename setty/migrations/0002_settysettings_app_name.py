@@ -13,6 +13,18 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='settysettings',
             name='app_name',
-            field=models.CharField(blank=True, choices=[('django.contrib.admin', 'django.contrib.admin'), ('django.contrib.auth', 'django.contrib.auth'), ('django.contrib.contenttypes', 'django.contrib.contenttypes'), ('django.contrib.sessions', 'django.contrib.sessions'), ('django.contrib.messages', 'django.contrib.messages'), ('django.contrib.staticfiles', 'django.contrib.staticfiles'), ('setty.apps.DjangoSettyConfig', 'setty.apps.DjangoSettyConfig')], max_length=190),
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ('django.contrib.admin', 'django.contrib.admin'),
+                    ('django.contrib.auth', 'django.contrib.auth'),
+                    ('django.contrib.contenttypes', 'django.contrib.contenttypes'),
+                    ('django.contrib.sessions', 'django.contrib.sessions'),
+                    ('django.contrib.messages', 'django.contrib.messages'),
+                    ('django.contrib.staticfiles', 'django.contrib.staticfiles'),
+                    ('setty.apps.DjangoSettyConfig', 'setty.apps.DjangoSettyConfig'),
+                ],
+                max_length=190,
+            ),
         ),
     ]

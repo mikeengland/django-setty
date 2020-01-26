@@ -17,6 +17,7 @@ class Settings:
     """
     Wrapper class used for accessing/updating setty settings
     """
+
     _backend = _load_backend_class()
 
     def __getattr__(self, key):

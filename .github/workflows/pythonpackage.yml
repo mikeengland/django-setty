@@ -28,4 +28,4 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
     - name: Run Black code formatter check
-      run: black --check
+      run: black --check .

@@ -20,7 +20,6 @@ SERIALIZERS = {
 
 
 class SettingsForm(forms.ModelForm):
-
     def __init__(self, *args, instance=None, **kwargs):
         # Loading the stringified value does not work without manually passing this in as initial data.
         # This is due to it being a model property. We can safely ignore the provided inital kwarg as it is merged later
@@ -28,9 +27,9 @@ class SettingsForm(forms.ModelForm):
         initial_data = {'value_unpacked': getattr(instance, 'value_unpacked', None)}
         super().__init__(*args, initial=initial_data, instance=instance, **kwargs)
 
-    value_unpacked = forms.CharField(label='Value',
-                                     help_text='The value to store. '
-                                               'List and Dict data types should be defined as JSON strings.')
+    value_unpacked = forms.CharField(
+        label='Value', help_text='The value to store. ' 'List and Dict data types should be defined as JSON strings.'
+    )
 
     def clean_value_unpacked(self):
         serializer = SERIALIZERS[self.cleaned_data['type']]
@@ -49,6 +48,7 @@ class SettingsForm(forms.ModelForm):
         # Reset item in cache if changed in the admin
         if settings.SETTY_BACKEND == 'CacheBackend':
             from setty.backend import CacheBackend
+
             CacheBackend().set_in_cache(instance.name, instance.value)
 
         return instance

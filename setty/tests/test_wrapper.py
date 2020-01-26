@@ -1,7 +1,6 @@
 from unittest.mock import patch
 
 from django.test import TestCase, override_settings
-
 from setty.backend import DatabaseBackend, CacheBackend
 from setty.exceptions import InvalidConfigurationError
 from setty.models import SettySettings as SettySettingsModel
@@ -9,7 +8,6 @@ from setty.wrapper import Settings, _load_backend_class
 
 
 class WrapperTests(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()

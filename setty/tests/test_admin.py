@@ -8,7 +8,6 @@ from setty.models import SettySettings
 
 @override_settings(SETTY_BACKEND='DatabaseBackend')
 class AdminSettingsFormTests(TestCase):
-
     def _validate_invalid_form(self, data_type):
         form = SettingsForm(data={'name': 'mysetting', 'type': data_type, 'value_unpacked': 'invalid'})
         self.assertFalse(form.is_valid())

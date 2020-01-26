@@ -13,6 +13,7 @@ class DatabaseBackend:
     """
     The simple DatabaseBackend is backed by the Django model storing these settings
     """
+
     def get_all(self, app_name=None):
         if app_name:
             return SettySettings.objects.filter(app_name=app_name).all()
@@ -29,8 +30,9 @@ class DatabaseBackend:
     def set(self, name, value):
         updated_count = SettySettings.objects.filter(name=name).update(value=value)
         if not updated_count:
-            raise SettingDoesNotExistError(f'Error setting value for {name} - '
-                                           f'this setting does not exist in the database!')
+            raise SettingDoesNotExistError(
+                f'Error setting value for {name} - ' f'this setting does not exist in the database!'
+            )
         return value
 
 
@@ -39,6 +41,7 @@ class CacheBackend(DatabaseBackend):
     CacheBackend uses the Django cache setup to cache values instead of accessing the
     database on each get call.
     """
+
     def get(self, name):
         cache_key = self._make_cache_key(name)
         setting_value = cache.get(cache_key, '__expired__')

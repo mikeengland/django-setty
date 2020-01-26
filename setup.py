@@ -12,23 +12,16 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='django-setty',
-
     version='3.2.0',
-
     author='Michael England',
     author_email='michael.k.england@gmail.com',
-
     license='Apache License Version 2.0',
-
     packages=['setty', 'setty.migrations'],
     include_package_data=True,
-
     url='https://github.com/mikeengland/django-setty',
-
     description='Django app allowing users to configure settings dynamically in the Admin screen',
     long_description=long_description,
     long_description_content_type='text/markdown',
-
     classifiers=[
         'License :: OSI Approved :: Apache Software License',
         'Development Status :: 5 - Production/Stable',

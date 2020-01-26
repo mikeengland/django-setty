@@ -1,5 +1,5 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 from picklefield import PickledObjectField
 
 
@@ -20,7 +20,8 @@ class TypeChoices:
         (STRING, 'String'),
     )
 
-APP_CHOICES = [ (app,app) for app in settings.INSTALLED_APPS ]
+
+APP_CHOICES = [(app, app) for app in settings.INSTALLED_APPS]
 
 
 class SettySettings(models.Model):

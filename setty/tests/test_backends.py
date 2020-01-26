@@ -21,7 +21,6 @@ class BaseBackendTestsMixin:
 
 @override_settings(SETTY_BACKEND='DatabaseBackend')
 class DatabaseBackendTests(BaseBackendTestsMixin, TestCase):
-
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
@@ -58,8 +57,10 @@ class DatabaseBackendTests(BaseBackendTestsMixin, TestCase):
         self.assertEqual(self.backend.get('mydict'), {'a': 1, 'b': 2})
 
     def test_set_invalid_setting_raises_exception(self):
-        with self.assertRaisesMessage(SettingDoesNotExistError, f'Error setting value for invalid - '
-                                                                f'this setting does not exist in the database!'):
+        with self.assertRaisesMessage(
+                SettingDoesNotExistError,
+                f'Error setting value for invalid - ' f'this setting does not exist in the database!',
+        ):
             self.backend.set('invalid', True)
 
     def test_set_updates_bool(self):
@@ -90,21 +91,22 @@ class DatabaseBackendTests(BaseBackendTestsMixin, TestCase):
 @override_settings(SETTY_BACKEND='CacheBackend', SETTY_CACHE_PREFIX='_mock_key_')
 @patch('setty.backend.cache')
 class CacheBackendTest(BaseBackendTestsMixin, TestCase):
-
     def setUp(self):
         self.backend = CacheBackend()
 
     def test_load_all_settings_into_cache_calls_set_for_all_settings(self, mock_cache):
         self.backend.load_all_settings_into_cache()
 
-        mock_cache.set.assert_has_calls([
-            call('_mock_key_:mybool', True, 3600),
-            call('_mock_key_:mydict', {'a': 1, 'b': 2}, 3600),
-            call('_mock_key_:myfloat', 3.142, 3600),
-            call('_mock_key_:myinteger', 123, 3600),
-            call('_mock_key_:mylist', [1, 2, 3, 4], 3600),
-            call('_mock_key_:mystring', 'test_string', 3600),
-        ])
+        mock_cache.set.assert_has_calls(
+            [
+                call('_mock_key_:mybool', True, 3600),
+                call('_mock_key_:mydict', {'a': 1, 'b': 2}, 3600),
+                call('_mock_key_:myfloat', 3.142, 3600),
+                call('_mock_key_:myinteger', 123, 3600),
+                call('_mock_key_:mylist', [1, 2, 3, 4], 3600),
+                call('_mock_key_:mystring', 'test_string', 3600),
+            ]
+        )
 
     @override_settings(SETTY_CACHE_TTL=5)
     def test_set_method(self, mock_cache):
