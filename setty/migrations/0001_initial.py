@@ -33,6 +33,6 @@ class Migration(migrations.Migration):
                 ('created_time', models.DateTimeField(auto_now_add=True)),
                 ('updated_time', models.DateTimeField(auto_now=True)),
             ],
-            options={'verbose_name': 'Setty Settings', 'verbose_name_plural': 'Setty Settings', },
+            options={'verbose_name': 'Setty Settings', 'verbose_name_plural': 'Setty Settings'},
         ),
     ]
