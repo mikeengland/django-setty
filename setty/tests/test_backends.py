@@ -58,8 +58,8 @@ class DatabaseBackendTests(BaseBackendTestsMixin, TestCase):
 
     def test_set_invalid_setting_raises_exception(self):
         with self.assertRaisesMessage(
-                SettingDoesNotExistError,
-                f'Error setting value for invalid - ' f'this setting does not exist in the database!',
+            SettingDoesNotExistError,
+            f'Error setting value for invalid - ' f'this setting does not exist in the database!',
         ):
             self.backend.set('invalid', True)
 
