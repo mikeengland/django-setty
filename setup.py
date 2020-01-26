@@ -3,6 +3,9 @@ from os import path
 
 from setuptools import setup
 
+with open('requirements.txt') as fp:
+    install_requires = fp.read()
+
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
@@ -38,7 +41,6 @@ setup(
         'Operating System :: Microsoft :: Windows',
     ],
     keywords='django dynamic live settings setty django-setty admin cache',
-
-    install_requires=['django-picklefield', 'python-memcached'],
+    install_requires=install_requires,
     test_suite='setty.tests',
 )
