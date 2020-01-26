@@ -27,6 +27,10 @@ class DatabaseBackend:
 
         return setting
 
+
+
+
+
     def set(self, name, value):
         updated_count = SettySettings.objects.filter(name=name).update(value=value)
         if not updated_count:
