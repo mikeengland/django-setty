@@ -8,4 +8,7 @@ def setty_settings(request):
     Add 'setty.context_processors.setty_settings' to the
     TEMPLATE_CONTEXT_PROCESSORS setting to ensure this can be used.
     """
-    return {'setty': setty.config}
+    tags = {f'setty_{app}': setty.config.get_for_app(app) for app in settings.INSTALLED_APPS}
+    tags['setty'] = setty.config
+
+    return tags
