@@ -11,7 +11,9 @@ def setty_settings(request):
     TEMPLATE_CONTEXT_PROCESSORS setting to ensure this can be used.
     """
 
+    tags = {'setty': setty.config}
     app_name = resolve(request.path).app_name
-    tags = {'setty_current_app': setty.config.get_for_app(app_name), 'setty': setty.config}
+    if app_name:
+        tags['setty_current_app'] = setty.config.get_for_app(app_name)
 
     return tags

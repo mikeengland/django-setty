@@ -4,3 +4,7 @@ class InvalidConfigurationError(Exception):
 
 class SettingDoesNotExistError(Exception):
     pass
+
+
+class NotAppNameProvide(Exception):
+    pass
