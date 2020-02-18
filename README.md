@@ -17,7 +17,7 @@ Continuous integration currently tests Django v1.11, v2.0, v2.1 and master.
 Installation
 ------------
 ```
-pip install setty
+pip install django-setty
 ```
 
 Django Configuration
