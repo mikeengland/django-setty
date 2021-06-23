@@ -12,7 +12,7 @@ Requirements
 * Python 3.6+
 * Django 2.0+
 
-Continuous integration currently tests Django >= v2 and master.
+Continuous integration currently tests Django >= v2.
 
 Installation
 ------------
