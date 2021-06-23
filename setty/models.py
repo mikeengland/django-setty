@@ -34,11 +34,11 @@ class SettySettings(models.Model):
     updated_time = models.DateTimeField(auto_now=True)
 
     @property
-    def value_unpacked(self):
+    def value_unpacked(self) -> str:
         return str(self.value)
 
     @value_unpacked.setter
-    def value_unpacked(self, value):
+    def value_unpacked(self, value: Any) -> None:
         self.value = value
 
     def __str__(self):
