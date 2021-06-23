@@ -53,7 +53,8 @@ class CacheBackend(DatabaseBackend):
 
     def _retrieve_and_cache_setting(self, name):
         value = super().get(name)
-        return self.set(name, value)
+        self.set_in_cache(name, value)
+        return value
 
     def set(self, name, value):
         super().set(name, value)
