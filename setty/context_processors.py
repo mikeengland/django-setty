@@ -1,4 +1,6 @@
 import setty
+from django.conf import settings
+from django.urls import resolve
 
 
 def setty_settings(request):
@@ -8,7 +10,10 @@ def setty_settings(request):
     Add 'setty.context_processors.setty_settings' to the
     TEMPLATE_CONTEXT_PROCESSORS setting to ensure this can be used.
     """
-    tags = {f'setty_{app}': setty.config.get_for_app(app) for app in settings.INSTALLED_APPS}
-    tags['setty'] = setty.config
+
+    tags = {'setty': setty.config}
+    app_name = resolve(request.path).app_name
+    if app_name:
+        tags['setty_current_app'] = setty.config.get_for_app(app_name)
 
     return tags
